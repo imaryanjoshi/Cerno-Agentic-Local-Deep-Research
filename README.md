@@ -72,8 +72,8 @@ Let’s build something amazing together! 🚀
 1. **Clone the repo**
 
    ```bash
-   git clone https://github.com/your-username/cerno-ai-workspace.git
-   cd cerno-ai-workspace
+   git clone https://github.com/divagr18/Cerno-Agentic-Local-Deep-Research.git
+   cd Cerno-Agentic-Local-Deep-Research
    ```
 
 2. **Run Migrations**
