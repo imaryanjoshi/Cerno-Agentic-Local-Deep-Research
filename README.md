@@ -1,4 +1,4 @@
-**Cerno : Agentic Deep Research**
+#**Cerno : Agentic Deep Research**
 
 ![License](https://img.shields.io/badge/license-MIT-blue) ![Local-First](https://img.shields.io/badge/local--first-true-ff69b4)
 
@@ -97,7 +97,7 @@ After applying migrations, follow these steps to configure your environment and 
 
    Creates a fresh `.env` file. Open it and fill in your API keys (e.g., `OPENAI_API_KEY`, `GEMINI_API_KEY`) or local model settings for Ollama. 
 
-   For now, we only support OpenAI, Gemini and local models on Ollama **that support tool calling**, but support for more models is coming in the next release.
+   For now, we only support OpenAI, Gemini, Anthropic, Deepseek and local models on Ollama **that support tool calling**, but support for more models is coming in the next release.
 
 
 2. **Activate the virtual environment**
