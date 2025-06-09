@@ -1,0 +1,27 @@
+[project]
+name = "cerno-ai-workspace"
+version = "0.1.0"
+description = "An open-source, model-agnostic workspace for interacting with AI agents."
+dependencies = [
+    "click",
+    "django",
+    "djangorestframework",
+    "requests",
+    "openai",
+    "google-generativeai",
+    "anthropic",
+    "agno"
+]
+
+[project.scripts]
+cerno = "cerno_cli:cli"
+
+# --- ADD THIS SECTION AT THE END ---
+[tool.setuptools]
+# Tell setuptools to look for single-file Python modules.
+# This is needed for your cerno_cli.py file.
+py-modules = ["cerno_cli"]
+
+# Tell setuptools which directories are your actual packages.
+# These are the folders containing your main Django/API code.
+packages = ["api", "core"]

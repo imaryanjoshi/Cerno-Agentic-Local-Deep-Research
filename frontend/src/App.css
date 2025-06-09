@@ -1,0 +1,74 @@
+/* src/App.css */
+.app-container {
+  display: flex; /* LeftSidebar and MainChatWindow will be flex items */
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: var(--bg-secondary);
+  position: relative; /* <<< IMPORTANT: For absolute positioning of the right panel wrapper */
+}
+.main-content { /* This class was used before, ensure MainChatWindow takes its place or is wrapped by it */
+  flex-grow: 1;
+  display: flex; /* This is important if MainChatWindow is the direct child */
+  flex-direction: column;
+  overflow: hidden; /* MainChatWindow itself will handle internal scrolling */
+  background-color: var(--bg-primary);
+}
+.right-panel-container {
+  position: fixed; /* Use fixed positioning */
+  right: 0;
+  top: 0;
+  height: 100%;
+  z-index: 100;
+}
+.right-panel-container.visible {
+  transform: translateX(0); /* Slide in when visible */
+  pointer-events: auto; /* Enable interaction when visible */
+}
+.main-chat-window-container {
+  flex-grow: 1; /* It will take space left by LeftSidebar */
+  /* Its internal .main-chat-content-area will handle max-width and centering */
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--bg-secondary); /* Or transparent if .main-chat-content-area has the color */
+  position: relative; /* If it has any absolutely positioned children */
+  border-top: 1px solid var(--border-secondary); /* Full width top border */
+}
+.right-panel {
+  width: 300px;
+  flex-shrink: 0;
+  background-color: var(--bg-primary); /* Inner panel background */
+  border-left: 1px solid var(--border-primary);
+  display: flex;
+  flex-direction: column;
+}
+.right-panel-motion-wrapper-absolute {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  z-index: 50;
+  background-color: var(--bg-primary);
+  box-shadow: -5px 0px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 0; /* Ensure no default margins */
+  padding: 0; /* Ensure no default paddings on the wrapper itself */
+  box-sizing: border-box; /* <<< ADD/CONFIRM */
+}
+.preview-message-placeholder {
+  padding-left: 16px; /* Match other content padding */
+  padding-right: 5px;  /* Match other content padding */
+  padding-bottom: 10px;
+  color: var(--text-secondary);
+  font-size: 0.9em;
+  text-align: left; /* Or center if you prefer for these messages */
+  flex-grow: 1; /* Allow it to take space if it's the only thing in preview */
+  display: flex; /* Optional: if you want to center the <p> tag within it */
+  align-items: center; /* Optional: vertically center text if using flex */
+  /* justify-content: center; /* Optional: horizontally center text if using flex */
+}
+.preview-message-placeholder p { /* If you put the class on the p tag directly */
+  margin: 0; /* Reset default p margin if needed */
+}

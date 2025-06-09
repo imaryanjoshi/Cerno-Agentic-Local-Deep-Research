@@ -1,0 +1,77 @@
+#!/bin/bash
+# Cerno AI Workspace - All-in-one bootstrap and command script.
+
+VENV_DIR="venv"
+VENV_PYTHON="$VENV_DIR/bin/python"
+VENV_CERNO_CLI="$VENV_DIR/bin/cerno"
+
+# Create venv if it doesn't exist
+if [ ! -d "$VENV_DIR" ]; then
+    echo ""
+    echo -e "\033[0;36mVirtual environment not found. Creating one now...\033[0m"
+    python3 -m venv "$VENV_DIR" > /dev/null
+    if [ $? -ne 0 ]; then
+        echo -e "\033[0;31mError: Failed to create virtual environment.\033[0m"
+        exit 1
+    fi
+    echo -e "\033[0;32mVirtual environment created successfully.\033[0m"
+    echo ""
+fi
+
+# Check if the project is installed. If not, run setup and then continue.
+if [ ! -f "$VENV_CERNO_CLI" ]; then
+    echo ""
+    echo -e "\033[0;36mCerno project not yet installed. Running one-time setup...\033[0m"
+    echo "(This may take a few minutes.)"
+    echo ""
+
+    "$VENV_PYTHON" -m pip install -r requirements.txt > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        echo -e "\033[0;33mInitial quiet installation failed. Retrying in verbose mode...\033[0m"
+        "$VENV_PYTHON" -m pip install -r requirements.txt
+        if [ $? -ne 0 ]; then
+            echo -e "\033[0;31mError: Failed to install Python dependencies.\033[0m"
+            exit 1
+        fi
+    fi
+
+    "$VENV_PYTHON" cerno_cli.py setup
+    if [ $? -ne 0 ]; then
+        echo -e "\033[0;31mProject setup failed. Please check the output above.\033[0m"
+        exit 1
+    fi
+
+    echo ""
+    echo -e "\033[0;32mSetup completed successfully!\033[0m"
+    echo ""
+    
+    # Check if the CLI was installed successfully
+    if [ ! -f "$VENV_CERNO_CLI" ]; then
+        echo -e "\033[0;31mError: Installation completed but cerno CLI not found.\033[0m"
+        echo "Please run the setup manually or check for errors above."
+        exit 1
+    fi
+    
+    echo -e "\033[0;32mActivating virtual environment...\033[0m"
+    source "$VENV_DIR/bin/activate"
+    
+    echo ""
+    echo -e "\033[0;32mAll set!\033[0m You can now use cerno commands directly:"
+    echo "  cerno start"
+    echo "  cerno --help"
+    echo ""
+    echo -e "\033[0;36mNote: The virtual environment is now active in this terminal.\033[0m"
+    echo ""
+    
+    # After setup, run the original command if provided
+    if [ $# -gt 0 ]; then
+        echo -e "\033[0;36mRunning your original command: cerno $@\033[0m"
+        "$VENV_CERNO_CLI" "$@"
+    fi
+    
+    # Start a new shell with the activated environment
+    exec "$SHELL"
+fi
+
+# If we get here, the CLI should be installed - run the actual command
+"$VENV_CERNO_CLI" "$@"

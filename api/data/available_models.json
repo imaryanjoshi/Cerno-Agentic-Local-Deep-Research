@@ -1,0 +1,40 @@
+{
+  "OpenAI": [
+    { "provider": "OpenAI", "id": "gpt-4.1-nano", "name": "Gpt 4.1 Nano" },
+    { "provider": "OpenAI", "id": "gpt-4o", "name": "Gpt 4o" },
+    { "provider": "OpenAI", "id": "gpt-4o-2024-05-13", "name": "Gpt 4o 2024 05 13" },
+    { "provider": "OpenAI", "id": "gpt-4o-mini-2024-07-18", "name": "Gpt 4o Mini 2024 07 18" },
+    { "provider": "OpenAI", "id": "gpt-4o-mini", "name": "Gpt 4o Mini" },
+    { "provider": "OpenAI", "id": "gpt-4o-2024-08-06", "name": "Gpt 4o 2024 08 06" },
+    { "provider": "OpenAI", "id": "gpt-4o-2024-11-20", "name": "Gpt 4o 2024 11 20" },
+    { "provider": "OpenAI", "id": "gpt-4.5-preview", "name": "Gpt 4.5 Preview" },
+    { "provider": "OpenAI", "id": "gpt-4.5-preview-2025-02-27", "name": "Gpt 4.5 Preview 2025 02 27" },
+    { "provider": "OpenAI", "id": "gpt-4.1", "name": "Gpt 4.1" },
+    { "provider": "OpenAI", "id": "gpt-4.1-mini-2025-04-14", "name": "Gpt 4.1 Mini 2025 04 14" },
+    { "provider": "OpenAI", "id": "gpt-4.1-mini", "name": "Gpt 4.1 Mini" }
+  ],
+  "Google": [
+
+    { "provider": "Google", "id": "gemini-2.5-pro-exp-03-25", "name": "Gemini 2.5 Pro Experimental 03-25" },
+    { "provider": "Google", "id": "gemini-2.5-pro-preview-03-25", "name": "Gemini 2.5 Pro Preview 03-25" },
+    { "provider": "Google", "id": "gemini-2.5-flash-preview-04-17", "name": "Gemini 2.5 Flash Preview 04-17" },
+    { "provider": "Google", "id": "gemini-2.5-flash-preview-05-20", "name": "Gemini 2.5 Flash Preview 05-20" },
+    { "provider": "Google", "id": "gemini-2.5-pro-preview-05-06", "name": "Gemini 2.5 Pro Preview 05-06" },
+    { "provider": "Google", "id": "gemini-2.5-pro-preview-06-05", "name": "Gemini 2.5 Pro Preview" },
+    { "provider": "Google", "id": "gemini-2.0-pro-exp", "name": "Gemini 2.0 Pro Experimental" },
+    { "provider": "Google", "id": "gemini-2.0-pro-exp-02-05", "name": "Gemini 2.0 Pro Experimental 02-05" },
+    { "provider": "Google", "id": "gemini-2.0-flash-thinking-exp-01-21", "name": "Gemini 2.5 Flash Preview 04-17" },
+    { "provider": "Google", "id": "gemini-2.0-flash-thinking-exp", "name": "Gemini 2.5 Flash Preview 04-17" },
+    { "provider": "Google", "id": "gemini-2.0-flash-thinking-exp-1219", "name": "Gemini 2.5 Flash Preview 04-17" }
+  ],
+  "Anthropic": [
+    { "provider": "Anthropic", "id": "claude-opus-4-20250514", "name": "Claude Opus 4" },
+    { "provider": "Anthropic", "id": "claude-sonnet-4-20250514", "name": "Claude Sonnet 4" },
+    { "provider": "Anthropic", "id": "claude-3-7-sonnet-20250219", "name": "Claude 3.7 Sonnet" }
+  ],
+  "DeepSeek": [
+    { "provider": "DeepSeek", "id": "deepseek-v3", "name": "DeepSeek V3 " },
+    { "provider": "DeepSeek", "id": "deepseek-r1", "name": "DeepSeek R1" },
+    { "provider": "DeepSeek", "id": "deepseek-r1-0528", "name": "DeepSeek R1‑0528" }
+  ]
+}

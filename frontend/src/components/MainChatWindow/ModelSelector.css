@@ -1,0 +1,93 @@
+.model-selector-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Reduced gap */
+    background-color: var(--bg-secondary);
+
+    padding: 8px 14px; /* More padding for a pill shape */
+    border-radius: 999px;
+    /* margin-bottom is removed as it's now in the header */
+    transition: border-color 0.2s ease;
+    max-width: 250px; /* Give it a max width */
+    position: relative;
+    top: 3px;
+}
+
+
+.model-selector-container:hover {
+    background-color: var(--bg-tertiary-dark, #2a2a2a);
+}
+
+.model-selector-icon {
+    color: var(--icon-color-on-dark, #888);
+    flex-shrink: 0;
+}
+
+.model-selector-dropdown {
+    width: 100%;
+    background-color: transparent; /* The container has the background */
+    border: none;
+    color: var(--text-primary); /* This sets the color of the selected item */
+    font-family: var(--font-weight-regular), sans-serif;
+    font-size: 0.85em;
+    font-weight: 500;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 16px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0px center;
+    background-size: 16px;
+
+}
+
+.model-selector-dropdown:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+.model-selector-dropdown option,
+.model-selector-dropdown optgroup {
+    background-color: var(--bg-primary); /* Use your primary background color */
+    color: var(--text-primary); /* Ensure text is readable */
+    font-weight: 400; /* Regular weight for options */
+    padding: 8px 12px; /* Add padding: 8px top/bottom, 12px left/right */
+    margin-top: 4px;
+}
+.model-selector-dropdown option {
+    padding: 8px 12px 8px 24px; /* Add more left padding to options to indent them under the group label */
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+}
+.model-selector-dropdown optgroup {
+    font-weight: 600; /* Bolder weight for provider names */
+    color: var(--text-secondary); /* A slightly different color for the group label */
+}
+.model-selector-dropdown.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color-hover) var(--bg-primary); /* Thumb and Track color */
+}
+
+/* WebKit scrollbar styling */
+.model-selector-dropdown.custom-scrollbar::-webkit-scrollbar {
+    width: 10px; /* Slightly wider to accommodate the border effect */
+}
+
+.model-selector-dropdown.custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--bg-primary); /* Match the dropdown's likely background */
+}
+
+.model-selector-dropdown.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color-hover);
+    border-radius: 10px;
+
+    border: 30px solid var(--accent-color-hover);
+
+    background-clip: content-box;
+}
+
+.model-selector-dropdown.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-color);
+}

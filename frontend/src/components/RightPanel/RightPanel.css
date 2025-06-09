@@ -1,0 +1,528 @@
+
+.right-panel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  position: relative;
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+.resizer-handle {
+  position: absolute;
+  left: -3px;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  cursor: col-resize;
+  z-index: 10;
+  transition: background-color 0.2s ease;
+}
+.resizer-handle:hover {
+  background-color: var(--accent-color-hover, rgba(100, 100, 255, 0.3));
+}
+
+.right-panel-header {
+  padding: 13.5px 16px;
+  border-bottom: 1px solid var(--border-secondary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.right-panel-header h3 {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 600;
+}
+.close-panel-button {
+  padding: 4px;
+  border-radius: 4px;
+  color: var(--icon-color);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.close-panel-button:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--icon-color-active);
+}
+
+.right-panel-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-secondary);
+  flex-shrink: 0;
+}
+.tab-button {
+  flex-grow: 1;
+  padding: 10px 12px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-secondary);
+  font-size: 0.9em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+  outline: none;
+}
+.tab-button:hover {
+  color: var(--text-primary);
+}
+.tab-button.active {
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+}
+
+.right-panel-content {
+  flex-grow: 1;
+  display: flex; 
+  flex-direction: column; 
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.file-browser-section {
+  width: 100%;
+  box-sizing: border-box;
+  max-height: 45%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px 0px 10px 10px;
+  border-bottom: 1px solid var(--border-secondary);
+  flex-shrink: 0;
+  display: flex; 
+  flex-direction: column; 
+  scrollbar-width: thin;
+  scrollbar-color: #C1B5A3 transparent;
+}
+.file-browser-section::-webkit-scrollbar { width: 6px; }
+.file-browser-section::-webkit-scrollbar-thumb { background-color: var(--border-primary); border-radius: 3px; }
+.file-browser-section::-webkit-scrollbar-track { background: transparent; }
+
+.file-browser-section h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  padding-left: 8px;
+  font-size: 0.85em;
+  color: var(--text-secondary);
+  font-weight: 500;
+  flex-shrink: 0; 
+}
+
+.file-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  overflow-y: auto; 
+  flex-grow: 1; 
+}
+.file-item {
+  display: flex;
+  align-items: center;
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.875em;
+  margin-right: 6px;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+  min-height: 24px;
+}
+.file-item:hover { background-color: var(--bg-tertiary); }
+.file-item.selected { background-color: var(--accent-color); font-weight: 500; }
+.file-item.selected .item-name { color: #FFFFFF; }
+.file-item.selected .item-icon-wrapper svg,
+.file-item.selected .caret svg { color: #FFFFFF; }
+
+.item-icon-wrapper {
+  margin-right: 7px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 20px; 
+  justify-content: center; 
+}
+.item-icon-wrapper svg { color: var(--icon-color); transition: color 0.1s ease-in-out; display: block; }
+.item-icon-wrapper .icon-directory { color: var(--accent-color); }
+.file-item:hover .item-icon-wrapper .icon-directory { color: var(--accent-color-hover); }
+.item-icon-wrapper .icon-markdown { color: var(--text-secondary); }
+.file-item:hover .item-icon-wrapper .icon-markdown { color: var(--text-primary); }
+.item-icon-wrapper .icon-json { color: var(--pending-color, #FFC107); } 
+.file-item:hover .item-icon-wrapper .icon-json { color: var(--text-primary); }
+.item-icon-wrapper .icon-file-generic { color: var(--text-placeholder); }
+.file-item:hover .item-icon-wrapper .icon-file-generic { color: var(--text-secondary); }
+
+.item-name {
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+.caret {
+  margin-left: auto;
+  padding-left: 5px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.caret svg { display: block; }
+.file-item:hover .caret svg { color: var(--text-primary); }
+
+.file-preview-section {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-right: 0px; 
+  flex-grow: 1;
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+.file-preview-section h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 0.9em;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  padding-left: 16px;
+  padding-right: 16px; 
+}
+.file-info {
+  margin-bottom: 10px;
+  font-size: 0.85em;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  padding-left: 16px;
+  padding-right: 16px; 
+}
+.file-info strong { color: var(--text-primary); }
+
+.markdown-content-preview,
+.json-content-preview,
+.file-content-preview {
+  flex-grow: 1;
+  overflow-y: auto; /* This makes the element scrollable */
+  padding: 10px 16px; /* Consistent padding */
+  text-align: left;
+
+  /* Firefox scrollbar styling */
+  scrollbar-color: #C1B5A3 transparent;
+}
+
+.markdown-content-preview::-webkit-scrollbar,
+.json-content-preview::-webkit-scrollbar,
+.file-content-preview::-webkit-scrollbar {
+  width: 8px;
+}
+.markdown-content-preview::-webkit-scrollbar-track,
+.json-content-preview::-webkit-scrollbar-track,
+.file-content-preview::-webkit-scrollbar-track {
+  background: transparent;
+}
+.markdown-content-preview::-webkit-scrollbar-thumb,
+.json-content-preview::-webkit-scrollbar-thumb,
+.file-content-preview::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color); /* Use your theme's accent color */
+  border-radius: 10px;
+  /* This trick makes the scrollbar appear thinner than its clickable area */
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+.markdown-content-preview::-webkit-scrollbar-thumb:hover,
+.json-content-preview::-webkit-scrollbar-thumb:hover,
+.file-content-preview::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-color-hover);
+}
+
+.markdown-content-preview {
+  font-family: var(--font-weight-light), sans-serif; font-size: 0.9rem; line-height: 1.7; }
+
+.markdown-content-preview a { color: var(--link-color-markdown, #82AAFF); text-decoration: none; }
+.markdown-content-preview a:hover { color: var(--link-color-markdown-hover, #A2C2FF); text-decoration: underline; }
+.markdown-content-preview ul.contains-task-list {
+  list-style-type: none;
+  padding-left: 0.5em;
+}
+.markdown-content-preview .task-list-item {
+  list-style-type: none;
+  margin-bottom: 0.5em; /* Add some space between tasks */
+}
+.markdown-content-preview .task-list-item input[type="checkbox"] {
+  /* Reset browser default appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* Custom size and shape */
+  width: 1em;
+  height: 1em;
+  border: 1.5px solid var(--border-primary);
+  border-radius: 3px;
+  background-color: transparent;
+
+  /* Alignment with text */
+  vertical-align: middle;
+  position: relative;
+  top: -0.1em; /* Fine-tune vertical alignment */
+  margin-right: 0.6em;
+
+  cursor: default; /* It's a read-only indicator */
+  display: inline-flex; /* Use flex for centering the checkmark */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style for the checked state */
+.markdown-content-preview .task-list-item input[type="checkbox"]:checked {
+  border-color: var(--accent-color);
+  background-color: var(--accent-color); /* Fill the box when checked */
+}
+
+/* Custom checkmark using a pseudo-element */
+.markdown-content-preview .task-list-item input[type="checkbox"]:checked::before {
+  content: '';
+  display: block;
+  width: 0.25em;  /* Width of the checkmark lines */
+  height: 0.5em; /* Height of the checkmark lines */
+  border-style: solid;
+  border-color: #C1B5A3; /* Checkmark color (white/light on accent bg) */
+  border-width: 0 0.15em 0.15em 0; /* Creates the L-shape for checkmark */
+  transform: translateY(-0.1em) rotate(45deg);
+}
+
+/* Ensure text next to checkbox aligns well if it's in a <p> tag */
+.markdown-content-preview .task-list-item > p:first-child {
+  display: inline;
+  margin: 0;
+}
+.json-content-preview {
+  background-color: var(--code-block-bg, #1A1A1A);
+  border-radius: 4px;
+}
+.json-content-preview > div { 
+  margin: 0 !important;
+  padding: 10px !important;
+  font-size: 0.85em !important;
+  line-height: 1.5 !important;
+  border-radius: 4px;
+}
+
+.file-content-preview { 
+  background-color: var(--bg-tertiary, #2A2A2A);
+  border-radius: 4px;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-size: 0.85em;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: var(--text-primary);
+  padding-top: 10px; 
+  padding-bottom: 10px;
+}
+
+.sources-section {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  overflow-y: auto;
+  flex-grow: 1;
+  scrollbar-color: #C1B5A3 transparent;
+}
+.sources-section::-webkit-scrollbar { width: 6px; }
+.sources-section::-webkit-scrollbar-thumb { background-color: #C1B5A3; border-radius: 3px; }
+.sources-section::-webkit-scrollbar-track { background: transparent; }
+.sources-section h4 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  padding-left: 8px;
+  font-size: 0.85em;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.sources-list { list-style: none; padding: 0; margin: 0; }
+.source-item { margin-bottom: 12px; padding: 7px 8px; border-radius: 5px; transition: background-color 0.15s ease; }
+.source-item:hover { background-color: var(--bg-tertiary); }
+.source-item a { display: flex; align-items: center; text-decoration: none; color: var(--text-primary); font-size: 0.875em; }
+.source-item a:hover .source-title { color: var(--accent-color); }
+
+.item-icon-wrapper.source-icon-wrapper {
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  border-radius: 3px;
+}
+.source-favicon { width: 16px; height: 16px; object-fit: contain; display: block; }
+.source-favicon-placeholder-fallback { display: none;  color: var(--icon-color); }
+.icon-source-pdf { color: var(--error-color, #BC4749); }
+.icon-source-web { color: var(--running-color, #007ACC); }
+.icon-source-generic { color: var(--icon-color); }
+.source-item a:hover .item-icon-wrapper svg { color: var(--accent-color); }
+
+.source-item .item-name.source-title {
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  flex-grow: 1;
+  min-width: 0;
+  line-height: 1.3;
+}
+.source-snippet {
+  font-size: 0.8em;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  padding-left: 28px; 
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.loading-spinner, .error-message, .no-file-selected, .preview-message-placeholder {
+  padding: 10px;
+  color: var(--text-secondary);
+  text-align: center;
+  font-size: 0.9em;
+}
+.preview-message-placeholder { 
+  padding-left: 16px;
+  padding-right: 16px;
+  text-align: left;
+  flex-grow: 1;
+  display: flex;
+  align-items: center; 
+}
+.preview-message-placeholder p { margin: 0; }
+
+.loading-spinner svg { margin-right: 8px; vertical-align: middle; animation: spin 1.2s linear infinite; }
+.right-panel-header > .panel-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-action-button {
+  padding: 4px;
+  border-radius: 4px;
+  color: var(--icon-color);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.panel-action-button:hover:not(:disabled) {
+  background-color: var(--bg-tertiary);
+  color: var(--icon-color-active);
+}
+.panel-action-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.refresh-button.spinning svg {
+  animation: spin 1.2s linear infinite;
+}
+.item-icon-wrapper .icon-pdf {
+  color: #D93025; /* A standard PDF red color */
+}
+
+/* --- NEW STYLES FOR PDF PREVIEW --- */
+
+.pdf-content-preview {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* The inner container will scroll */
+  background-color: var(--bg-tertiary); /* A neutral background for the PDF viewer */
+  border-radius: 4px;
+}
+
+.pdf-document-container {
+  flex-grow: 1;
+  overflow-y: auto; /* This makes the PDF content scrollable */
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+
+  /* Themed scrollbar for the PDF viewer */
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-color) transparent;
+}
+.pdf-document-container::-webkit-scrollbar { width: 8px; }
+.pdf-document-container::-webkit-scrollbar-track { background: transparent; }
+.pdf-document-container::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* Style the rendered PDF page */
+.pdf-page {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  margin-bottom: 16px;
+}
+
+/* Style the pagination controls */
+.pdf-pagination {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 8px;
+  border-top: 1px solid var(--border-secondary);
+  background-color: var(--bg-primary);
+  font-size: 0.85em;
+}
+
+.pdf-pagination button {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  color: var(--text-primary);
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pdf-pagination button:hover:not(:disabled) {
+  background-color: var(--bg-tertiary);
+  border-color: var(--accent-color);
+}
+
+.pdf-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

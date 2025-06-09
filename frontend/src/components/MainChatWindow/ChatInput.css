@@ -1,0 +1,93 @@
+.chat-input-container {
+  
+  padding: 12px 20px; 
+  background-color: var(--bg-primary); 
+  flex-shrink: 0;
+  
+}
+
+.chat-input-bar { 
+  display: flex;
+  align-items: flex-end;
+  background-color: var(--bg-primary); 
+  
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  padding: 6px;
+  gap: 8px;
+  position: relative;
+}
+  
+  .chat-action-button {
+    padding: 8px; 
+    border-radius: 6px;
+    color: var(--icon-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end; 
+    margin-bottom: 1px; 
+  }
+  .chat-action-button:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--icon-color-active);
+  }
+  .chat-input-bar:has(.chat-textarea[rows="1"]) .chat-action-button {
+      align-self: center; 
+      margin-bottom: 0;
+  }
+
+.chat-textarea {
+  flex-grow: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  resize: none; /* Disable manual resizing by user */
+  color: var(--text-primary);
+  font-size: 1em;
+  line-height: 1.5; /* Set an explicit line-height */
+  padding: 10px 0; /* Apply padding only top/bottom, not left/right */
+  max-height: 150px;
+  overflow-y: auto;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+  .chat-textarea::placeholder {
+    color: var(--text-placeholder);
+  }
+  
+  .send-button {
+    background-color: var(--icon-color);
+    color: var(--accent-text-color);
+    padding: 8px; 
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s ease;
+    align-self: flex-end; 
+    margin-bottom: 1px; 
+  }
+  .send-button:hover:not(:disabled) {
+    background-color: var(--accent-color-hover);
+  }
+  .send-button:disabled {
+    background-color: var(--border-primary);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+  }
+  .chat-input-bar:has(.chat-textarea[rows="1"]) .send-button {
+      align-self: center; 
+      margin-bottom: 0;
+  }
+.send-button.stop-button {
+  background-color: var(--error-color); /* A red color from your theme */
+  color: white;
+}
+.send-button.stop-button:hover {
+  background-color: #c82333; /* A darker red */
+}
+
+.chat-textarea:disabled {
+  background-color: #0E1117;
+  cursor: not-allowed;
+}

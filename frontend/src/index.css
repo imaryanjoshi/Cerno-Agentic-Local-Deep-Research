@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+:root {
+
+    /* Light Mode (Default) */
+    --bg-primary: #ffffff;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #ededf0;
+    --bg-accent: #e0e7ff; /* Light muted blue for user messages */
+    --bg-agent: #f0f0f0; /* Light gray for agent messages */
+    --font-family-base: 'Satoshi', sans-serif; /* Use General Sans */
+
+    /* Font Weights - you're loading 300 and 400 */
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --text-placeholder: #9ca3af;
+
+    --border-primary: #d1d5db;
+    --border-secondary: #e5e7eb;
+
+    --accent-color-hover: #C1B5A3;
+    --accent-text-color: #ffffff;
+    --link-color-markdown: #82AAFF; /* Example Light Blue for links - from "Deep Ocean" theme */
+    --link-color-markdown-hover: #A2C2FF;
+
+    --icon-color: #6b7280;
+    --icon-color-active: var(--accent-color);
+
+    --success-color: #10b981;
+    --error-color: #ef4444;
+    --pending-color: #f59e0b;
+    --running-color: var(--accent-color);
+
+
+    --sidebar-width-collapsed: 60px;
+    --sidebar-width-expanded: 220px;
+  }
+
+  /* Add a dark mode if desired later by overriding these variables
+     within a [data-theme="dark"] selector or media query.
+  */
+  /* In index.css or a theme.css file */
+/* In index.css or a theme.css file */
+[data-theme="monochrome-focus"] {
+  --dark-charcoal: #222831;
+  --dark-slate-grey: #393E46;
+  --muted-taupe: #948979;
+  --light-beige: #DFD0B8;
+
+  /* Backgrounds */
+  --bg-deep-space: #181B20;         /* Deepest background (e.g., for Hero, outer page) - slightly darker than charcoal */
+  --bg-main-content: var(--dark-charcoal); /* #222831 - For general page sections below hero */
+  --bg-panel-accent: var(--dark-slate-grey); /* #393E46 - For cards, bento cells, subtle panels */
+  --bg-nav: rgba(24, 27, 32, 0.75); /* Semi-transparent version of --bg-deep-space for nav */
+  --bg-footer: var(--bg-deep-space); /* Footer background */
+
+  /* Text */
+  --text-primary-on-dark: var(--light-beige);   /* #DFD0B8 */
+  --text-secondary-on-dark: #B0A89F;          /* Slightly muted beige for less emphasis */
+  --text-placeholder-on-dark: #7F7A70;        /* For placeholders or very subtle text */
+  --text-on-accent-button: var(--dark-charcoal);/* #222831 - Dark text on taupe buttons for contrast */
+  --text-headline-accent: var(--muted-taupe); /* #948979 - For highlighted words in headlines */
+
+  /* Accents & Interactive */
+            /* Lighter Taupe for hover */
+  /* --accent-highlight-vibrant: #E87A00; */ /* Optional: A brighter, contrasting highlight for gradients if needed */
+
+  /* Borders */
+  --border-color-subtle: #303640;            /* Subtle borders (e.g., nav bottom, panel outlines) */
+  --border-color-interactive: var(--muted-taupe); /* For focus states or active borders */
+
+  /* Icons */
+  --icon-color-default: var(--text-secondary-on-dark);
+  --icon-color-accent: var(--accent-color);
+  --bg-primary: #0E1117;       /* Main content background */
+  --bg-secondary: #0E1117;     /* Surrounding areas, sidebar, overall page bg */
+  --bg-tertiary: #2A2A2A;      /* Hover states, code blocks */
+  --bg-accent: #2F3E51; /*  #f12840,  User message bubble (using the accent color) */
+  --bg-agent: #2F3E51;         /* Agent message bubble */
+  --bg-space-darkest: #101218;
+  --bg-space-primary: #222831;
+  --bg-panel: rgba(57, 62, 70, 0.6); /* #393E46 at 60% opacity for the content panel */
+  --bg-panel-border: rgba(148, 137, 121, 0.15); /* Subtle border for panel using accent */
+  --bg-input: #2D323A;
+  --text-primary: #E0E0E0;
+  --text-primary2: #FFFFFF;
+  --text-secondary: #FFFFFF;   /* Secondary text (medium grey) */
+  --text-placeholder: #757575; /* Placeholder text */
+  --text-on-accent: #222831;
+  --border-primary: #333333;   /* Prominent borders */
+  --border-secondary: #2A2A2A; /* Subtle borders */
+
+  --accent-color-hover: #C1B5A3;
+  --accent-text-color: #000000;/* Text on accent buttons (white) */
+  --border-input: rgba(148, 137, 121, 0.4);
+  --icon-color: #A0A0A0;
+  --icon-color-active: #007ACC;
+
+  --success-color: #4CAF50;     /* Standard green */
+  --error-color: #F44336;       /* Standard red */
+  --pending-color: #FFC107;     /* Standard amber */
+  --running-color: #007ACC;     /* Blue (matches accent) */
+
+  /* Task list specific */
+  --task-overall-title-color: var(--text-primary);
+  --step-description-color: var(--text-secondary);
+  --agent-action-chip-bg: #2C2C2C;
+  --agent-action-chip-border: #383838;
+  --agent-action-chip-text-prefix: var(--text-primary);
+  --agent-action-chip-text-detail: var(--text-secondary);
+  --agent-action-chip-icon-color: var(--icon-color);
+  --step-connector-line-color: var(--border-primary);
+
+  /* Code block specific */
+  --code-block-bg: #1A1A1A;
+  --code-block-header-bg: var(--bg-tertiary);
+  --code-block-text-color: var(--text-primary);
+}
+[data-theme="paper-ink"] {
+  --bg-primary: #FBF9F4;       /* Main content background (creamy white) */
+  --bg-secondary: #FBF9F4;     /* Surrounding areas, sidebar (light beige) */
+  --bg-tertiary: #E6DFD2;      /* Hover states, code blocks (slightly darker beige) */
+  --bg-accent: #D4C8B4;        /* User message bubble (muted beige/brown) */
+  --bg-agent: #EAE3D9;         /* Agent message bubble (lighter beige) */
+
+  --text-primary: #3A352F;     /* Main text (dark brown/sepia) */
+  --text-secondary: #6E6459;   /* Secondary text (muted brown) */
+  --text-placeholder: #9C8F80; /* Placeholder text */
+
+    --border-primary: #C1B5A3;   /* Prominent borders */
+  --border-secondary: #D4C8B4; /* Subtle borders */
+
+  --accent-color: #8C5E3A;     /* Primary actions (muted terracotta/brown) */
+  --accent-color-hover: #C1B5A3;/* Hover for accent */
+  --accent-text-color: #FBF9F4; /* Text on accent buttons (creamy white) */
+
+  --icon-color: #6E6459;
+  --icon-color-active: #8C5E3A;
+
+  --success-color: #5A7D4F;     /* Muted green */
+  --error-color: #A84949;       /* Muted red */
+  --pending-color: #B07D4A;     /* Muted orange/amber */
+  --running-color: #5E83A0;     /* Muted blue */
+
+  /* Task list specific */
+  --task-overall-title-color: var(--text-primary);
+  --step-description-color: var(--text-secondary);
+  --agent-action-chip-bg: var(--bg-tertiary);
+  --agent-action-chip-border: var(--border-primary);
+  --agent-action-chip-text-prefix: var(--text-primary);
+  --agent-action-chip-text-detail: var(--text-secondary);
+  --agent-action-chip-icon-color: var(--icon-color);
+  --step-connector-line-color: var(--border-primary);
+
+  /* Code block specific */
+  --code-block-bg: #F5F0E8;
+  --code-block-header-bg: var(--bg-tertiary);
+  --code-block-text-color: var(--text-primary);
+}
+  [data-theme="deep-ocean"] {
+    --bg-primary: #0A192F;       /* Main content background (e.g., chat history, input bar) */
+    --bg-secondary: #080808;     /* Surrounding areas, sidebar, overall page bg */
+    --bg-tertiary: #172A45;      /* Hover states, code blocks, less prominent elements */
+    --bg-accent: #1F4662;        /* User message bubble */
+    --bg-agent: #102E4A;         /* Agent message bubble */
+
+    --text-primary: #CCD6F6;     /* Main text (light blueish grey) */
+    --text-secondary: #8892B0;   /* Secondary text, timestamps (muted light blue/grey) */
+    --text-placeholder: #6A7E9E; /* Placeholder text */
+
+    --border-primary: #243E5E;   /* Prominent borders */
+    --border-secondary: #172A45; /* Subtle borders, dividers */
+
+    --accent-color: #64FFDA;     /* Primary actions, highlights (bright teal/cyan) */
+    --accent-color-hover: #C1B5A3;/* Hover for accent */
+    --accent-text-color: #0A192F; /* Text on accent buttons (dark, for contrast with bright accent) */
+
+    --icon-color: #8892B0;       /* Default icon color */
+    --icon-color-active: #64FFDA;/* Active/hover icon color */
+
+    --success-color: #64FFDA;     /* Teal for success */
+    --error-color: #FF708D;       /* Pink/Red for error */
+    --pending-color: #FFCB6B;     /* Yellow/Orange for pending */
+    --running-color: #82AAFF;     /* Light blue for running task steps */
+
+    /* Task list specific for this theme */
+    --task-overall-title-color: var(--text-primary);
+    --step-description-color: var(--text-secondary);
+    --agent-action-chip-bg: var(--bg-tertiary);
+    --agent-action-chip-border: var(--border-primary);
+    --agent-action-chip-text-prefix: var(--text-primary);
+    --agent-action-chip-text-detail: var(--text-secondary);
+    --agent-action-chip-icon-color: var(--icon-color);
+    --step-connector-line-color: var(--border-primary);
+
+    /* Code block specific for this theme */
+    --code-block-bg: #0E2038; /* Slightly different from primary for distinction */
+    --code-block-header-bg: var(--bg-tertiary);
+    --code-block-text-color: var(--text-primary);
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: var(--font-family-base); /* Use the new base font family variable */
+    font-weight: var(--font-weight-regular);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased; /* Already there, good for macOS/iOS */
+    -moz-osx-font-smoothing: grayscale; /* Good for Firefox on macOS/Windows */
+    font-feature-settings: normal;    /* Explicitly set default, can be overridden per element */
+    font-variation-settings: normal; /* Explicitly set default, for variable fonts (IBM Plex Sans can be variable) */
+    text-rendering: optimizeLegibility;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    color: inherit;
+  }
+
+  input, textarea {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  /* Utility classes */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+html {
+  height: 100%;
+  overflow-y: auto; /* Allow vertical scroll on html element */
+  scroll-behavior: smooth;
+}

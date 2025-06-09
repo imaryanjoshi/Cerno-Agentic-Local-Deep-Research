@@ -1,0 +1,73 @@
+
+.session-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    
+    padding: var(--sidebar-item-vertical-padding) var(--sidebar-item-horizontal-padding);
+    border-radius: 6px; 
+    margin-bottom: 4px;
+    text-align: left;
+    color: var(--text-secondary);
+    background-color: transparent; 
+    border: 1px solid transparent; 
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    box-sizing: border-box;
+    min-height: var(--sidebar-button-min-height); 
+    cursor: pointer;
+}
+
+.session-item:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+     
+}
+
+.session-item.selected {
+    
+    background-color: var(--bg-tertiary); 
+    color: var(--text-primary); 
+    font-weight: 500; 
+     
+}
+
+.session-item.selected .session-icon-wrapper .session-icon,
+.session-item.selected .session-icon-wrapper .session-status-icon {
+    color: var(--accent-color); 
+}
+
+.session-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.session-icon,
+.session-status-icon {
+    flex-shrink: 0;
+    color: var(--icon-color); 
+}
+
+.session-status-icon.status-active { color: var(--running-color); }
+.session-status-icon.status-completed { color: var(--success-color); }
+.session-status-icon.status-error { color: var(--error-color); }
+.session-status-icon.status-pending { color: var(--pending-color); }
+
+.session-name {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9em; 
+    min-width: 0; 
+}
+
+.session-status-icon.status-active svg { 
+    animation: spin 1.5s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

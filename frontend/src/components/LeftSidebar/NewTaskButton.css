@@ -1,0 +1,38 @@
+
+.new-task-button {
+    background-color: red !important;
+    padding: 20px !important;
+    border: 5px solid yellow !important;
+}
+
+.new-task-button .new-task-btn-icon {
+    flex-shrink: 0;
+    margin-right: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: -20px; 
+}
+
+.new-task-button .new-task-btn-icon svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+}
+
+.new-task-button .new-task-btn-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+    min-width: 0;
+    line-height: 1.2;
+}
+
+.new-task-button:hover {
+    color: var(--accent-color);
+    background-color: rgba(var(--accent-color), 0.1);
+}

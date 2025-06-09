@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # The Django Backend Service
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cerno_backend
+    # This command overrides the CMD in the Dockerfile for development.
+    # It runs migrations and then starts the dev server.
+    command: >
+      sh -c "python manage.py migrate &&
+             uvicorn core.asgi:application --host 0.0.0.0 --port 8000 --reload"
+    volumes:
+      # Mount the local code into the container for live-reloading
+      - .:/app
+      # Persist the database file outside the container
+      - ./db.sqlite3:/app/db.sqlite3
+      # Persist agent outputs
+      - ./agent_outputs:/app/agent_outputs
+    ports:
+      # Expose port 8000 for direct API access if needed, but we'll use Nginx
+      - "8000:8000"
+    env_file:
+      # Load environment ariables from the .env file
+      - ./.env
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: cerno_frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  db_data: 

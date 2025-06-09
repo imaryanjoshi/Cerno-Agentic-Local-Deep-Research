@@ -1,0 +1,344 @@
+
+.chat-message-wrapper {
+  display: flex;
+  max-width: 90%;
+  margin-bottom: 4px;
+}
+
+.chat-message-wrapper.user {
+  margin-left: auto;
+  flex-direction: row-reverse;
+  max-width: 75%;
+}
+
+.chat-message-wrapper.agent {
+  margin-right: auto;
+}
+
+.chat-message-bubble {
+  padding: 10px 14px;
+  border-radius: 12px;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.chat-message-bubble.user-bubble {
+  background-color: var(--bg-accent);
+  color: var(--accent-color);
+  border-bottom-right-radius: 4px;
+}
+
+.chat-message-wrapper.agent .chat-message-bubble:not(.has-task) {
+  background-color: var(--bg-agent);
+  color: var(--text-primary);
+  border-bottom-left-radius: 4px;
+}
+
+.chat-message-wrapper.agent .chat-message-bubble.has-task {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  width: 100%;
+}
+
+.message-text {
+  margin: 0 0 8px 0;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  color: var(--text-primary2);
+}
+.chat-message-bubble > .message-text:last-child {
+  margin-bottom: 0;
+}
+
+.message-timestamp {
+  font-size: 0.75em;
+  display: block;
+  text-align: right;
+  margin-top: 6px;
+  opacity: 0.7;
+  color: var(--text-primary2);
+
+}
+
+.task-progress-container {
+  margin-top: 8px;
+  color: var(--text-primary);
+}
+
+.task-main-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 2px 0;
+}
+
+.task-title-status-icon {
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+.task-title-status-icon.success { color: #5cb85c; }
+.task-title-status-icon.running { color: var(--running-color); }
+.task-title-status-icon.error { color: var(--error-color); }
+
+
+.task-overall-title {
+  font-size: 1.05em;
+  font-weight: 500;
+  margin: 0;
+  flex-grow: 1;
+  color: var(--text-primary);
+}
+
+.task-collapse-toggle {
+  margin-left: auto;
+  color: var(--icon-color);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+.task-collapse-toggle:hover {
+  color: var(--icon-color-active);
+}
+
+.task-steps-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-step {
+  display: flex; /* Use flexbox for the entire list item */
+  position: relative;
+  align-items: baseline;
+  font-size: 0.9em;
+  padding-left: 10px;
+  margin-bottom: 16px;
+  gap: 12px; /* Gap between timeline and content */
+}
+.task-step:last-child {
+  margin-bottom: 8px;
+}
+
+.step-timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 0px;
+  height: 100%;
+  width: 20px;
+}
+
+.step-status-icon-wrapper {
+  z-index: 2;
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 20px;
+}
+.action-status-indicator {
+  flex-shrink: 0;
+  margin-left: auto;
+  margin-top: 3px;
+}
+.status-icon {
+
+}
+.status-icon.success { color: var(--success-color); }
+.status-icon.error { color: var(--error-color); }
+.status-icon.running { color: var(--running-color); }
+.status-icon.pending { color: var(--pending-color); }
+.status-icon.stopped { color: var(--error-color); } /* Using orange/yellow for stopped */
+
+.status-icon.default { color: var(--text-secondary); }
+
+.step-connector-line {
+  width: 2px; /* Thickness of the line */
+  flex-grow: 1; /* CRITICAL: This makes the line fill the remaining vertical space */
+  background-image: linear-gradient(var(--border-primary) 40%, rgba(255,255,255,0) 0%); /* Dotted line effect */
+  background-position: center;
+  background-size: 100% 8px; /* Controls dot size and spacing */
+  background-repeat: repeat-y;
+}
+.task-step.last-step .step-connector-line {
+  display: none;
+}
+
+.step-content {
+  padding-left: 28px;
+  flex-grow: 1;
+}
+
+.step-description {
+  margin: 0 0 10px 0;
+  font-size: 0.9em;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.agent-actions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.agent-action-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 16px;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-secondary);
+  font-size: 0.8em;
+  gap: 8px; /* Gap between icon, text, and status */
+
+  color: var(--text-secondary);
+  max-width: 100%;
+}
+
+.status-icon.running svg,
+
+.action-chip-icon {
+  margin-right: 6px;
+  display: flex;
+  align-items: center;
+  color: var(--icon-color);
+}
+.action-icon-style {
+  flex-shrink: 0;
+}
+.action-icon-wrapper {
+  flex-shrink: 0;
+  position: relative;
+  top: 1.5px; /* Align icon better with the first line of text */
+  color: var(--icon-color);
+}
+.action-prefix {
+  font-weight: 500;
+  color: var(--text-primary);
+  /* The margin-right from the previous step is no longer needed here */
+}
+.action-prefix::after {
+  /* Add the colon */
+  content: ' :';
+  /* Add padding to create the space. Adjust 0.5em to your liking. */
+  padding-right: 0.5em;
+}
+.action-chip-prefix {
+  font-weight: 600;
+  font-family: Inter, serif;
+  margin-right: 5px;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.action-text-wrapper {
+  flex-grow: 1;
+  min-width: 0; /* For flexbox ellipsis */
+  line-height: 1.5;
+}
+.action-chip-detail {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-secondary);
+  flex-shrink: 1;
+  min-width: 50px;
+}
+.action-icon-research { color: var(--running-color); }
+.action-icon-composer { color: var(--success-color); }
+.action-icon-generic-tool { color: var(--text-placeholder); }
+.action-detail {
+  color: var(--text-secondary);
+}
+
+.task-summary {
+  margin-top: 12px;
+  font-size: 0.9em;
+  font-style: italic;
+  color: var(--text-secondary);
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-secondary);
+}
+
+.code-block-container {
+  margin-top: 10px;
+  background-color: var(--bg-tertiary);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-secondary);
+}
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  background-color: var(--border-secondary);
+  font-size: 0.8em;
+  color: var(--text-secondary);
+}
+.code-block-language {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.code-block-copy-button {
+  color: var(--icon-color);
+  padding: 4px;
+  border-radius: 4px;
+}
+.code-block-copy-button:hover {
+  background-color: rgba(0,0,0,0.1);
+  color: var(--icon-color-active);
+}
+.code-block-container pre {
+  margin: 0;
+  padding: 12px;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-size: 0.875em;
+  line-height: 1.5;
+  overflow-x: auto;
+  color: var(--text-primary);
+  background-color: var(--bg-secondary);
+}
+svg.status-icon.running {
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.step-llm-output {
+  margin-top: 6px;
+  padding: 8px;
+  background-color: rgba(var(--accent-color-rgb, 80, 70, 200), 0.05);
+  border-radius: 4px;
+  font-size: 0.875em;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+}
+.step-llm-output p,
+.step-llm-output ul,
+.step-llm-output ol {
+  margin-bottom: 0.5em;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 2. Apply the animation to any icon with the .spinning class */
+.spinning {
+  animation: spin 1.2s linear infinite;
+}
+
+/* You can also be more specific if you prefer */
+.action-icon-wrapper .spinning {
+  animation: spin 1.2s linear infinite;
+}
