@@ -1,4 +1,4 @@
-#**Cerno : Agentic Deep Research**
+# **Cerno : Agentic Deep Research**
 
 ![License](https://img.shields.io/badge/license-MIT-blue) ![Local-First](https://img.shields.io/badge/local--first-true-ff69b4)
 
