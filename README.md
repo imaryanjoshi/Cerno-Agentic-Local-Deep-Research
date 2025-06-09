@@ -4,6 +4,8 @@
 
 Cerno is an open-source workspace for conducting **deep**, **multi-step** research and analysis using autonomous AI agents. Designed for developers and researchers who demand **analytical transparency**, Cerno exposes every reasoning step—from prompt decomposition to final synthesis—so you can observe, debug, and steer complex agentic workflows with confidence.
 
+![Cerno](screenshots/browser.png)
+
 ## 📚 Table of Contents
 
 1. [Highlights](#-highlights)
