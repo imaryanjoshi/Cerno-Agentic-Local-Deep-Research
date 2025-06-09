@@ -1,6 +1,6 @@
 **Cerno : Agentic Deep Research**
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![License](https://img.shields.io/badge/license-MIT-blue) ![Local-First](https://img.shields.io/badge/local--first-true-ff69b4)
+![License](https://img.shields.io/badge/license-MIT-blue) ![Local-First](https://img.shields.io/badge/local--first-true-ff69b4)
 
 Cerno is an open-source workspace for conducting **deep**, **multi-step** research and analysis using autonomous AI agents. Designed for developers and researchers who demand **analytical transparency**, Cerno exposes every reasoning step—from prompt decomposition to final synthesis—so you can observe, debug, and steer complex agentic workflows with confidence.
 
