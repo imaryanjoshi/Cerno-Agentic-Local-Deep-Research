@@ -73,7 +73,7 @@ Let’s build something amazing together! 🚀
 
 ## 🚀 Getting Started (Local CLI)
 
-1. **Clone the repo**
+1. **Clone the repo** (or download the repo)
 
    ```bash
    git clone https://github.com/divagr18/Cerno-Agentic-Local-Deep-Research.git
