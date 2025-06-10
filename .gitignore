@@ -200,3 +200,5 @@ out/
 # Docker
 .dockerignore
 docker-compose.override.yml
+api/migrations/__pycache__/__init__.cpython-311.pyc
+api/migrations/__pycache__/__init__.cpython-311.pyc

@@ -25,7 +25,7 @@ def run_command(command, cwd=None, quiet=False, error_message="Command failed"):
     else:
         command_str = command
 
-    click.echo(click.style(f"▶️ Running: '{command_str}' in '{cwd or os.getcwd()}'", fg="yellow"))
+    click.echo(click.style(f"▶️  Running: '{command_str}' in '{cwd or os.getcwd()}'", fg="yellow"))
 
     original_cwd = os.getcwd()
     stdout_dest = None
@@ -73,9 +73,14 @@ def setup():
     """
     Installs all dependencies and the project itself.
     """    # 2. Install the project in editable mode quietly
+    click.echo(f" ")
     click.echo(click.style("🚧 Cerno is new and under active development!", fg="cyan"))
-    click.echo(f"👉 Please ⭐ star the repo and report any bugs here:  {REPO_URL}/issues")
-    click.echo(click.style("Installing project and 'cerno' command...", fg="cyan"))
+    click.echo(f" ")
+    click.echo(f"🎉 If you encounter any issues, please report them at:  {REPO_URL}/issues")
+    click.echo(f" ")
+    click.echo(f"👉 If you find Cerno helpful please ⭐ star the repo here:   {REPO_URL}")
+    click.echo(f" ")
+
     
     run_command([sys.executable, "-m", "pip", "install", "-e", "."], quiet=True)
 
@@ -84,15 +89,21 @@ def setup():
     
     run_command(["npm", "install"], cwd=FRONTEND_DIR, quiet=True)
     click.echo(click.style("\n✅ Setup complete!", fg="green"))
-    click.echo(f"🎉 If you encounter any issues, please report them at:   {REPO_URL}/issues")
+
 
 
 @cli.command()
 def migrate():
     """Runs Django database migrations."""
-    click.echo(click.style("--- 🗃️ Running Database Migrations ---", bold=True))
+    click.echo(click.style("--- 🗃️  Running Database Migrations ---", bold=True))
+    click.echo(f" ")
+
     run_command([sys.executable, "manage.py", "makemigrations"])
+    click.echo(f" ")
+
     run_command([sys.executable, "manage.py", "migrate"])
+    click.echo(f" ")
+
     click.echo(click.style("✅  Migrations complete!", fg="green"))
     path = r"venv\Scripts\activate"
     click.echo("\nNext steps:")
@@ -104,6 +115,8 @@ def migrate():
 
     click.echo(f"  {click.style('cerno start', fg='yellow')}       - Start the backend and frontend servers.")
     click.echo(f"  {click.style('cerno --help', fg='yellow')}      - See all available commands.")
+    click.echo(f" ")
+    click.echo(f"🎉 If you encounter any issues, please report them at:  {REPO_URL}/issues")
 
 
 @cli.command(help="Launch both backend and frontend servers concurrently.")
@@ -141,10 +154,13 @@ def start(no_frontend):
 
             # 3. Run the command without the `cwd` argument, as we are already there.
             frontend_proc = subprocess.Popen(frontend_cmd, shell=IS_WINDOWS)
-
+        time.sleep(1.2)
         click.echo(click.style("\n🎉 Servers are running! Press CTRL+C to stop.", fg="green", bold=True))
+        click.echo(f" ")
         click.echo(f"🎉 If you encounter any issues, please report them at:  {REPO_URL}/issues")
-        click.echo(f"👉 If you find Cerno helpful please ⭐ star the repo here:   {REPO_URL}/issues")
+        click.echo(f" ")
+        click.echo(f"👉 If you find Cerno helpful please ⭐ star the repo here:   {REPO_URL}")
+        click.echo(f" ")
 
         while True:
             time.sleep(1)
