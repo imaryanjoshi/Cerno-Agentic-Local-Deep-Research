@@ -1,6 +1,10 @@
 # **Cerno : Agentic Deep Research**
 
-![License](https://img.shields.io/badge/license-MIT-blue) ![Local-First](https://img.shields.io/badge/local--first-true-ff69b4)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Local-First](https://img.shields.io/badge/local--first-true-ff69b4)
+<a href="https://www.producthunt.com/products/cerno-agentic-local-deep-research?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-cerno&#0045;agentic&#0045;local&#0045;deep&#0045;research" target="_blank">
+  <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=976447&theme=dark&t=1749537767333" alt="Cerno on Product Hunt" style="display:inline-block; vertical-align:middle; height:20px; margin-bottom: 14px;" />
+</a>
 
 Cerno is an open-source workspace for conducting **deep**, **multi-step** research and analysis using autonomous AI agents. Designed for developers and researchers who demand **analytical transparency**, Cerno exposes every reasoning step—from prompt decomposition to final synthesis—so you can observe, debug, and steer complex agentic workflows with confidence.
 
