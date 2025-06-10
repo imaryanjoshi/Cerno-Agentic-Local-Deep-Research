@@ -24,3 +24,4 @@ sseclient_py==1.8.0
 uvicorn
 watchdog==4.0.1
 duckduckgo-search
+google-generativeai==0.8.5
