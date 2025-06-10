@@ -9,6 +9,7 @@ import click
 IS_WINDOWS = os.name == 'nt'
 FRONTEND_DIR = "frontend"
 NULL_DEVICE = "NUL" if IS_WINDOWS else "/dev/null"
+REPO_URL = "\n https://github.com/divagr18/Cerno-Agentic-Local-Deep-Research"
 
 
 # --- Helper Function for Running Commands ---
@@ -72,12 +73,18 @@ def setup():
     """
     Installs all dependencies and the project itself.
     """    # 2. Install the project in editable mode quietly
-    click.echo(click.style("\nInstalling project and 'cerno' command...", fg="cyan"))
+    click.echo(click.style("🚧 Cerno is new and under active development!", fg="cyan"))
+    click.echo(f"👉 Please ⭐ star the repo and report any bugs here:  {REPO_URL}/issues")
+    click.echo(click.style("Installing project and 'cerno' command...", fg="cyan"))
+    
     run_command([sys.executable, "-m", "pip", "install", "-e", "."], quiet=True)
 
     # 3. Install Node.js dependencies quietly
     click.echo(click.style("\nInstalling Node.js dependencies...", fg="cyan"))
+    
     run_command(["npm", "install"], cwd=FRONTEND_DIR, quiet=True)
+    click.echo(click.style("\n✅ Setup complete!", fg="green"))
+    click.echo(f"🎉 If you encounter any issues, please report them at:   {REPO_URL}/issues")
 
 
 @cli.command()
@@ -136,6 +143,9 @@ def start(no_frontend):
             frontend_proc = subprocess.Popen(frontend_cmd, shell=IS_WINDOWS)
 
         click.echo(click.style("\n🎉 Servers are running! Press CTRL+C to stop.", fg="green", bold=True))
+        click.echo(f"🎉 If you encounter any issues, please report them at:  {REPO_URL}/issues")
+        click.echo(f"👉 If you find Cerno helpful please ⭐ star the repo here:   {REPO_URL}/issues")
+
         while True:
             time.sleep(1)
 
