@@ -101,7 +101,7 @@ export const useEventSourceProcessor = ({
             });
 
             cleanupEventSource("Inactivity timeout");
-        }, 30000); // 30 seconds. Adjust as needed.
+        }, 90000); // 30 seconds. Adjust as needed.
     }, [cleanupEventSource, setMessages]);
 
     const startStream = useCallback((userInput: string, agentMessageId: string, modelId: string, sessionId: string) => {
