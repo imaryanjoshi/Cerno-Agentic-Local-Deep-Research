@@ -31,10 +31,12 @@ SECRET_KEY = 'django-insecure-6ugk+k^2$_@3+i+2x+hknb$96bnh&-w6ka_7re-%o7eejpxo(6
 DEBUG = True
 import os
 from dotenv import load_dotenv
-OPENAI_API_KEY = load_dotenv('OPENAI_API_KEY')
-GEMINI_API_KEY = load_dotenv('OPENAI_API_KEY')
-ANTHROPIC_API_KEY = load_dotenv('OPENAI_API_KEY')
-DEEPSEEK_API_KEY = load_dotenv('OPENAI_API_KEY')
+load_dotenv()
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
+ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY')
+DEEPSEEK_API_KEY = os.getenv('DEEPSEEK_API_KEY')
+SPIDER_API_KEY = os.getenv('SPIDER_API_KEY')
 
 ALLOWED_HOSTS = []
 
