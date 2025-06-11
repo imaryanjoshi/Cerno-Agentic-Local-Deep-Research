@@ -18,10 +18,8 @@ def run_command(command, cwd=None, quiet=False, error_message="Command failed"):
     Runs a command and checks for errors.
     This version manually changes directory if 'cwd' is provided, which is more robust on Windows.
     """
-    if IS_WINDOWS and isinstance(command, list):
-        command_str = subprocess.list2cmdline(command)
-    elif isinstance(command, list):
-        command_str = " ".join(command)
+    if isinstance(command, list):
+        command_str = subprocess.list2cmdline(command) if IS_WINDOWS else " ".join(command)
     else:
         command_str = command
 
@@ -29,28 +27,42 @@ def run_command(command, cwd=None, quiet=False, error_message="Command failed"):
 
     original_cwd = os.getcwd()
     stdout_dest = None
+    stderr_dest = None
+    
     try:
         if cwd:
             os.chdir(cwd)
-        stdout_dest = open(NULL_DEVICE, 'w') if quiet else None
-        stderr_dest = subprocess.STDOUT if quiet else None
-
-        subprocess.run(
-            command,
-            check=True,
-            shell=True,
-            stdout=stdout_dest,
-            stderr=stderr_dest
-        )
+        
+        if quiet:
+            stdout_dest = open(NULL_DEVICE, 'w')
+            stderr_dest = subprocess.STDOUT
+        
+        # Use the command as-is if it's a list, otherwise use shell=True
+        if isinstance(command, list):
+            result = subprocess.run(
+                command,
+                check=True,
+                stdout=stdout_dest,
+                stderr=stderr_dest
+            )
+        else:
+            result = subprocess.run(
+                command,
+                check=True,
+                shell=True,
+                stdout=stdout_dest,
+                stderr=stderr_dest
+            )
+            
     except subprocess.CalledProcessError as e:
         click.echo(click.style(f"❌ {error_message}", fg="red"))
-
         click.echo(f"   The command failed with exit code {e.returncode}.")
         sys.exit(1)
     except FileNotFoundError as e:
         click.echo(
             click.style(f"❌ Command not found: {command[0] if isinstance(command, list) else command.split()[0]}",
                         fg="red"))
+        click.echo(f"   Make sure the required tool is installed and in your PATH.")
         sys.exit(1)
     finally:
         if cwd:
@@ -91,6 +103,20 @@ def setup(verbose):
 
     # 3. Install Node.js dependencies
     click.echo(click.style("\nInstalling Node.js dependencies (npm install)...", fg="cyan"))
+    
+    # Check if frontend directory exists
+    if not os.path.isdir(FRONTEND_DIR):
+        click.echo(click.style(f"❌ Frontend directory '{FRONTEND_DIR}' not found.", fg="red"))
+        click.echo("   Make sure you're running this from the project root directory.")
+        sys.exit(1)
+    
+    # Check if package.json exists in frontend directory
+    package_json_path = os.path.join(FRONTEND_DIR, "package.json")
+    if not os.path.isfile(package_json_path):
+        click.echo(click.style(f"❌ package.json not found in '{FRONTEND_DIR}' directory.", fg="red"))
+        click.echo("   This might not be a valid Node.js project.")
+        sys.exit(1)
+    
     run_command(["npm", "install"], cwd=FRONTEND_DIR, quiet=quiet_mode,
                 error_message="Failed to install Node.js dependencies. Is Node.js/npm installed and in your PATH?")
 
@@ -133,7 +159,7 @@ def start(no_frontend):
     backend_cmd = [sys.executable, "-m", "uvicorn", "core.asgi:application", "--reload"]
 
     if IS_WINDOWS:
-        frontend_cmd = "npm run dev --open"
+        frontend_cmd = ["npm", "run", "dev", "--", "--open"]
     else:
         frontend_cmd = ["npm", "run", "dev", "--", "--open"]
 
@@ -152,7 +178,9 @@ def start(no_frontend):
 
             click.echo(click.style("🚀 Starting Vite frontend...", fg="magenta"))
             os.chdir(FRONTEND_DIR)
-            frontend_proc = subprocess.Popen(frontend_cmd, shell=IS_WINDOWS)
+            
+            # Use consistent command format for both platforms
+            frontend_proc = subprocess.Popen(frontend_cmd)
 
         time.sleep(1.2)
         click.echo(click.style("\n🎉 Servers are running! Press CTRL+C to stop.", fg="green", bold=True))
