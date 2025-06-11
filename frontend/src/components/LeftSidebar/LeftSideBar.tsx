@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Plus, ChevronLeft, ChevronRight, DiamondPlus } from 'lucide-react'; 
-import './LeftSidebar.css';
+import './LeftSideBar.css';
 import NewTaskButton from './NewTaskButton'; 
 import SessionItem from './SessionItem';
 import type { Session } from '../../types';
@@ -15,7 +15,7 @@ interface LeftSidebarProps {
     onSelectSession: (sessionId: string) => void;
 }
 
-const LeftSidebar: React.FC<LeftSidebarProps> = ({
+const LeftSideBar: React.FC<LeftSidebarProps> = ({
                                                      isExpanded,
                                                      onToggle,
                                                      sessions,
@@ -76,4 +76,4 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
     );
 };
 
-export default LeftSidebar;
+export default LeftSideBar;
