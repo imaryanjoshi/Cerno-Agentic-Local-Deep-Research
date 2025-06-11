@@ -2,13 +2,9 @@
 setlocal
 
 REM --- ANSI Color Setup for Windows ---
-REM This is a trick to get the actual ESC character (ASCII 27) into a variable.
-REM We create a temp file with a prompt that writes ESC, then read it.
 for /f %%a in ('echo prompt $E^| cmd') do (
   set "ESC=%%a"
 )
-
-REM Define color variables using the ESC character
 set "COLOR_CYAN=%ESC%[96m"
 set "COLOR_GREEN=%ESC%[92m"
 set "COLOR_YELLOW=%ESC%[93m"
@@ -20,6 +16,16 @@ set VENV_DIR=venv
 set VENV_PYTHON=%VENV_DIR%\Scripts\python.exe
 set VENV_PIP=%VENV_DIR%\Scripts\pip.exe
 set VENV_CERNO_CLI=%VENV_DIR%\Scripts\cerno.exe
+
+REM --- Argument Parsing for --verbose ---
+set "VERBOSE_FLAG=false"
+set "SETUP_ARGS="
+for %%a in (%*) do (
+    if /i "%%~a" == "--verbose" (
+        set "VERBOSE_FLAG=true"
+        set "SETUP_ARGS=--verbose"
+    )
+)
 
 REM --- Main Logic ---
 
@@ -45,20 +51,29 @@ if not exist "%VENV_CERNO_CLI%" (
     echo %COLOR_CYAN%Starting Cerno Setup%COLOR_RESET%
     echo.
     echo %COLOR_CYAN%[1/2] Installing Python dependencies...%COLOR_RESET%
-    %VENV_PIP% install -r requirements.txt > NUL 2>&1
 
-    if %errorlevel% neq 0 (
-        echo %COLOR_YELLOW%Initial quiet installation failed. Retrying in verbose mode...%COLOR_RESET%
+    if "%VERBOSE_FLAG%"=="true" (
+        echo %COLOR_CYAN%Verbose mode activated. Installing dependencies...%COLOR_RESET%
         %VENV_PIP% install -r requirements.txt
         if %errorlevel% neq 0 (
             echo %COLOR_RED%Error: Failed to install Python dependencies. Please check the output above.%COLOR_RESET%
             exit /b 1
         )
+    ) else (
+        %VENV_PIP% install -r requirements.txt > NUL 2>&1
+        if %errorlevel% neq 0 (
+            echo %COLOR_YELLOW%Initial quiet installation failed. Retrying in verbose mode...%COLOR_RESET%
+            %VENV_PIP% install -r requirements.txt
+            if %errorlevel% neq 0 (
+                echo %COLOR_RED%Error: Failed to install Python dependencies. Please check the output above.%COLOR_RESET%
+                exit /b 1
+            )
+        )
     )
 
     echo.
     echo %COLOR_CYAN%[2/2] Installing project and Node modules...%COLOR_RESET%
-    %VENV_PYTHON% cerno_cli.py setup
+    %VENV_PYTHON% cerno_cli.py setup %SETUP_ARGS%
     if %errorlevel% neq 0 (
         echo %COLOR_RED%Project setup failed. Please check the output above.%COLOR_RESET%
         exit /b 1

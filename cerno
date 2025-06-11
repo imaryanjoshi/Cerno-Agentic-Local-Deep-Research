@@ -1,6 +1,15 @@
 #!/bin/bash
 # Cerno AI Workspace - All-in-one bootstrap and command script.
 
+# --- Argument Parsing for --verbose ---
+VERBOSE=false
+for arg in "$@"; do
+  if [[ "$arg" == "--verbose" ]]; then
+    VERBOSE=true
+    break
+  fi
+done
+
 VENV_DIR="venv"
 VENV_PYTHON="$VENV_DIR/bin/python"
 VENV_CERNO_CLI="$VENV_DIR/bin/cerno"
@@ -25,17 +34,33 @@ if [ ! -f "$VENV_CERNO_CLI" ]; then
     echo "(This may take a few minutes.)"
     echo ""
 
-    "$VENV_PYTHON" -m pip install -r requirements.txt > /dev/null 2>&1
-    if [ $? -ne 0 ]; then
-        echo -e "\033[0;33mInitial quiet installation failed. Retrying in verbose mode...\033[0m"
+    # Conditionally install dependencies based on the --verbose flag
+    if [ "$VERBOSE" = true ]; then
+        echo -e "\033[0;36mVerbose mode: Installing Python dependencies...\033[0m"
         "$VENV_PYTHON" -m pip install -r requirements.txt
         if [ $? -ne 0 ]; then
             echo -e "\033[0;31mError: Failed to install Python dependencies.\033[0m"
             exit 1
         fi
+    else
+        "$VENV_PYTHON" -m pip install -r requirements.txt > /dev/null 2>&1
+        if [ $? -ne 0 ]; then
+            echo -e "\033[0;33mInitial quiet installation failed. Retrying in verbose mode...\033[0m"
+            "$VENV_PYTHON" -m pip install -r requirements.txt
+            if [ $? -ne 0 ]; then
+                echo -e "\033[0;31mError: Failed to install Python dependencies.\033[0m"
+                exit 1
+            fi
+        fi
     fi
 
-    "$VENV_PYTHON" cerno_cli.py setup
+    # Conditionally run project setup with the --verbose flag
+    SETUP_CMD=("$VENV_PYTHON" cerno_cli.py setup)
+    if [ "$VERBOSE" = true ]; then
+        SETUP_CMD+=("--verbose")
+    fi
+    "${SETUP_CMD[@]}"
+
     if [ $? -ne 0 ]; then
         echo -e "\033[0;31mProject setup failed. Please check the output above.\033[0m"
         exit 1

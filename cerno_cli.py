@@ -69,10 +69,13 @@ def cli():
 
 
 @cli.command()
-def setup():
+@click.option('--verbose', is_flag=True, default=False, help="Show detailed output from pip and npm.")
+def setup(verbose):
     """
     Installs all dependencies and the project itself.
-    """    # 2. Install the project in editable mode quietly
+    """
+    quiet_mode = not verbose
+
     click.echo(f" ")
     click.echo(click.style("🚧 Cerno is new and under active development!", fg="cyan"))
     click.echo(f" ")
@@ -81,40 +84,42 @@ def setup():
     click.echo(f"👉 If you find Cerno helpful please ⭐ star the repo here:   {REPO_URL}")
     click.echo(f" ")
 
-    
-    run_command([sys.executable, "-m", "pip", "install", "-e", "."], quiet=True)
+    # 2. Install the project in editable mode
+    click.echo(click.style("\nInstalling project in editable mode (pip install -e .)...", fg="cyan"))
+    run_command([sys.executable, "-m", "pip", "install", "-e", "."], quiet=quiet_mode,
+                error_message="Failed to install project in editable mode.")
 
-    # 3. Install Node.js dependencies quietly
-    click.echo(click.style("\nInstalling Node.js dependencies...", fg="cyan"))
-    
-    run_command(["npm", "install"], cwd=FRONTEND_DIR, quiet=True)
+    # 3. Install Node.js dependencies
+    click.echo(click.style("\nInstalling Node.js dependencies (npm install)...", fg="cyan"))
+    run_command(["npm", "install"], cwd=FRONTEND_DIR, quiet=quiet_mode,
+                error_message="Failed to install Node.js dependencies. Is Node.js/npm installed and in your PATH?")
+
     click.echo(click.style("\n✅ Setup complete!", fg="green"))
 
 
-
 @cli.command()
-def migrate():
+@click.option('--verbose', is_flag=True, default=False, help="Show detailed output from migration commands.")
+def migrate(verbose):
     """Runs Django database migrations."""
+    quiet_mode = not verbose
+
     click.echo(click.style("--- 🗃️  Running Database Migrations ---", bold=True))
     click.echo(f" ")
 
-    run_command([sys.executable, "manage.py", "makemigrations"])
+    run_command([sys.executable, "manage.py", "makemigrations"], quiet=quiet_mode)
     click.echo(f" ")
 
-    run_command([sys.executable, "manage.py", "migrate"])
+    run_command([sys.executable, "manage.py", "migrate"], quiet=quiet_mode)
     click.echo(f" ")
 
     click.echo(click.style("✅  Migrations complete!", fg="green"))
-    path = r"venv\Scripts\activate"
+    path = "source venv/bin/activate" if not IS_WINDOWS else r"venv\Scripts\activate"
     click.echo("\nNext steps:")
-    click.echo("\nFirst:")
-    click.echo(f"  {click.style(f'Create a .env file from the .env.example template and add your API keys.', fg='yellow')}       - Activate the venv.")
-
-    click.echo(f"  {click.style(f'run {path}', fg='yellow')}       - Activate the venv.")
-    click.echo("Then:")
-
-    click.echo(f"  {click.style('cerno start', fg='yellow')}       - Start the backend and frontend servers.")
-    click.echo(f"  {click.style('cerno --help', fg='yellow')}      - See all available commands.")
+    click.echo(
+        f"  1. {click.style('Create a .env file from the .env.example template and add your API keys.', fg='yellow')}")
+    click.echo(f"  2. {click.style(f'Activate the virtual environment: `{path}`', fg='yellow')}")
+    click.echo(f"  3. {click.style('Start the servers: `cerno start`', fg='yellow')}")
+    click.echo(f"\nSee all commands with {click.style('cerno --help', fg='yellow')}")
     click.echo(f" ")
     click.echo(f"🎉 If you encounter any issues, please report them at:  {REPO_URL}/issues")
 
@@ -134,26 +139,21 @@ def start(no_frontend):
 
     backend_proc = None
     frontend_proc = None
-    original_cwd = os.getcwd()  # Save the starting directory
+    original_cwd = os.getcwd()
 
     try:
         click.echo(click.style("🚀 Starting Django backend...", fg="cyan"))
         backend_proc = subprocess.Popen(backend_cmd)
 
         if not no_frontend:
-            # --- THE FIX IS HERE ---
-            # 1. Check if the frontend directory exists before trying to enter it.
             if not os.path.isdir(FRONTEND_DIR):
                 click.echo(click.style(f"❌ Frontend directory '{FRONTEND_DIR}' not found.", fg="red"))
                 sys.exit(1)
 
             click.echo(click.style("🚀 Starting Vite frontend...", fg="magenta"))
-
-            # 2. Manually change the current working directory.
             os.chdir(FRONTEND_DIR)
-
-            # 3. Run the command without the `cwd` argument, as we are already there.
             frontend_proc = subprocess.Popen(frontend_cmd, shell=IS_WINDOWS)
+
         time.sleep(1.2)
         click.echo(click.style("\n🎉 Servers are running! Press CTRL+C to stop.", fg="green", bold=True))
         click.echo(f" ")
@@ -169,9 +169,7 @@ def start(no_frontend):
         click.echo(click.style("\n🛑 CTRL+C detected, shutting down servers...", fg="yellow"))
 
     finally:
-        # 4. CRUCIAL: Always change back to the original directory.
         os.chdir(original_cwd)
-
         if frontend_proc and frontend_proc.poll() is None:
             click.echo("   - Stopping frontend server...")
             if IS_WINDOWS:
