@@ -2,7 +2,7 @@ import {useState, useEffect, useCallback, useRef} from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
-import LeftSidebar from './components/LeftSideBar/LeftSidebar';
+import LeftSideBar from './components/LeftSidebar/LeftSideBar';
 import MainChatWindow from './components/MainChatWindow/MainChatWindow';
 import RightPanel from './components/RightPanel/RightPanel';
 import { AnimatePresence, motion } from "framer-motion";
@@ -193,7 +193,7 @@ const AiWorkspaceLayout: React.FC = () => {
   console.log("[App.tsx] Rendering. fileToAutoOpen is:", fileToAutoOpen, " | refreshKey is:", fileListRefreshTrigger);
   return (
       <div className="app-container">
-        <LeftSidebar
+        <LeftSideBar
             isExpanded={isSidebarExpanded}
             onToggle={handleToggleSidebar}
             sessions={sessions}
