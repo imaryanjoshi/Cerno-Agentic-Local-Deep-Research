@@ -18,7 +18,7 @@ Cerno is an open-source workspace for conducting **deep**, **multi-step** resear
 4. [Prerequisites](#-prerequisites)
 5. [Getting Started](#-getting-started-local-cli)
 6. [Post-Migration Setup](#-post-migration-setup)
-7. [Docker Alternative](#-docker-alternative)
+6. [Docker Installation](#docker-installation)
 8. [CLI Reference](#️-cli-reference)
 9. [Project Structure](#-project-structure)
 10. [Screenshots](#-screenshots)
@@ -86,9 +86,13 @@ Let’s build something amazing together! 🚀
    # macOS/Linux
    chmod +x cerno
    ./cerno migrate
+   #for detailed logs
+   ./cerno migrate --verbose  
 
    # Windows
    .\cerno migrate
+   #for detailed logs
+   .\cerno migrate --verbose
    ```
 
 3. **Post-Migration Setup**
