@@ -1,232 +1,118 @@
-# **Cerno : Agentic Deep Research**
+# Cerno Agentic Local Deep Research 🌐🔍
 
-![License](https://img.shields.io/badge/license-MIT-blue)
-![Local-First](https://img.shields.io/badge/local--first-true-ff69b4)
-<a href="https://www.producthunt.com/products/cerno-agentic-local-deep-research?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-cerno&#0045;agentic&#0045;local&#0045;deep&#0045;research" target="_blank">
-  <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=976447&theme=dark&t=1749537767333" alt="Cerno on Product Hunt" style="display:inline-block; vertical-align:middle; height:20px; margin-bottom: 14px;" />
-</a>
+![Cerno Logo](https://via.placeholder.com/150)  
+[![Release](https://img.shields.io/badge/Release-v1.0.0-blue)](https://github.com/imaryanjoshi/Cerno-Agentic-Local-Deep-Research/releases)
 
-Cerno is an open-source workspace for conducting **deep**, **multi-step** research and analysis using autonomous AI agents. Designed for developers and researchers who demand **analytical transparency**, Cerno exposes every reasoning step—from prompt decomposition to final synthesis—so you can observe, debug, and steer complex agentic workflows with confidence.
+Welcome to the Cerno Agentic Local Deep Research repository! This project aims to revolutionize how we conduct research by combining local-first principles with advanced agentic AI technologies. In this README, you'll find everything you need to get started, understand the platform, and contribute to its growth.
 
-![Cerno](screenshots/browser.png)
+## Table of Contents
 
-## 📚 Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-1. [Highlights](#-highlights)
-2. [Local-First Principles](#-local-first-principles)
-3. [Active Development & Community](#️-active-development--community)
-4. [Prerequisites](#-prerequisites)
-5. [Getting Started](#-getting-started-local-cli)
-6. [Post-Migration Setup](#-post-migration-setup)
-6. [Docker Installation](#docker-installation)
-8. [CLI Reference](#️-cli-reference)
-9. [Project Structure](#-project-structure)
-10. [Screenshots](#-screenshots)
-11. [Use Cases](#-use-cases)
-12. [Roadmap](#-roadmap)
-13. [Security & Privacy](#-security--privacy)
-14. [Metrics & Benchmarks](#-metrics--benchmarks)
-15. [Contributing](#-contributing)
-16. [License](#-license)
+## Introduction
 
----
+Cerno is designed to make complex research tasks easier and more efficient. It leverages agentic AI to break down intricate queries into manageable, verifiable workflows. With Cerno, you can switch between cloud-based large language models (LLMs) and self-hosted models effortlessly. This flexibility allows you to track each step of your reasoning, optimize costs, and manage tokens—all while ensuring your data remains on your machine.
 
-## 🚀 Highlights
+For the latest updates and releases, please visit our [Releases page](https://github.com/imaryanjoshi/Cerno-Agentic-Local-Deep-Research/releases).
 
-* **Model-Agnostic Core**: Effortlessly switch between premier LLMs (OpenAI, Google Gemini, Anthropic, DeepSeek) or run local models via Ollama.
-* **Zero-Config Setup**: One CLI, one command—automatically create a virtual environment, install dependencies, and configure your workspace.
-* **Transparent Execution Plan**: Visualize each agent task as it moves through Pending → Running → Success/Error states in real time.
-* **Verifiable Artifacts**: Every source, webpage, and generated file (reports, code, data) is tracked and organized for easy auditing.
-* **Adaptive Depth**: Simple queries spawn lightweight plans; complex directives trigger multi-agent, multi-tool orchestrations.
-* **Token & Cost Optimization**: A manager-worker agent architecture balances quality and cost. Get a complete cost breakdown upon task completion.
-* **Local-First Ethos**: Work offline, retain full control of your data, and avoid vendor lock-in. Cerno’s local-first architecture ensures your research stays where you want it: on your machine.
+## Features
 
----
+- **Local-First Approach**: Keep your data secure on your machine while still accessing powerful AI capabilities.
+- **Agentic AI**: Utilize advanced AI to handle complex queries and break them down into simpler tasks.
+- **Seamless Switching**: Move easily between cloud LLMs and self-hosted models based on your needs.
+- **Cost Optimization**: Track your token usage and costs to make informed decisions.
+- **Transparency**: Understand each step of the reasoning process with clear workflows.
 
-## 🌱 Local-First Principles
+## Technologies Used
 
-Cerno embraces a **local-first** philosophy:
+Cerno incorporates a range of technologies to deliver its capabilities. Here are some key components:
 
-1. **Data Sovereignty**: All research artifacts—notes, reports, intermediate files—live on your local drive by default.
-2. **Offline Capability**: Core features work without internet. Use local LLMs (via Ollama) for research when connectivity is limited.
-3. **Privacy & Security**: Sensitive prompts and outputs never leave your machine unless explicitly configured.
-4. **Interoperability**: Write, export, and share results in standard formats (Markdown, Jupyter notebooks, JSON) without proprietary lock-in.
+- **Django**: For building the backend services.
+- **React**: For creating a responsive user interface.
+- **Docker**: To containerize applications and ensure consistency across environments.
+- **Python**: The primary programming language used for backend development.
+- **Agentic AI Models**: Including models from Anthropic and OpenAI.
+- **Local LLMs**: Self-hosted models that provide additional flexibility and data sovereignty.
 
----
+## Getting Started
 
-## 🛡️ Active Development & Community
+To get started with Cerno, follow these steps:
 
-Cerno is under **active development**—we’re constantly pushing new features, performance optimizations, and integrations. Your feedback is invaluable:
-
-* **Bug Reports**: Found an issue? Please open an issue on GitHub with detailed steps to reproduce.
-* **Feature Requests**: Have a great idea? Share it as an issue or discussion ticket.
-* **Contributions**: We welcome pull requests! See our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on setting up your dev environment, coding standards, and how to submit changes.
-
-Let’s build something amazing together! 🚀
-
-## 📦 Prerequisites
-
-* **Python** ≥ 3.10
-* **Node.js** ≥ 18.x & **npm**
-
----
-
-## 🚀 Getting Started (Local CLI)
-
-1. **Clone the repo** (or download the repo)
-
+1. **Clone the Repository**: 
    ```bash
-   git clone https://github.com/divagr18/Cerno-Agentic-Local-Deep-Research.git
+   git clone https://github.com/imaryanjoshi/Cerno-Agentic-Local-Deep-Research.git
+   ```
+
+2. **Install Dependencies**: Navigate to the project directory and install the required packages.
+   ```bash
    cd Cerno-Agentic-Local-Deep-Research
+   pip install -r requirements.txt
    ```
 
-2. **Run Migrations**
-
-   ```bash
-   # macOS/Linux
-   chmod +x cerno
-   ./cerno migrate
-   #for detailed logs
-   ./cerno migrate --verbose  
-
-   # Windows
-   .\cerno migrate
-   #for detailed logs
-   .\cerno migrate --verbose
-   ```
-
-3. **Post-Migration Setup**
-
-After applying migrations, follow these steps to configure your environment and launch Cerno:
-
-1. **Copy the `.env` template**
-
-   ```bash
-   cp .env.example .env
-   ```
-
-   Creates a fresh `.env` file. Open it and fill in your API keys (e.g., `OPENAI_API_KEY`, `GEMINI_API_KEY`) or local model settings for Ollama. 
-
-   For now, we only support OpenAI, Gemini, Anthropic, Deepseek and local models on Ollama **that support tool calling**, but support for more models is coming in the next release.
-
-
-2. **Activate the virtual environment**
-
-   ```bash
-   venv\Scripts\activate   # Windows PowerShell/CMD  
-   source venv/bin/activate    # macOS/Linux
-   ```
-
-   Ensures that Cerno’s dependencies and CLI are available in your current shell.
-
-3. **Start Cerno**
-
-   ```bash
-   cerno start
-   ```
-
-   Launches both the Django backend and the React frontend. Once running, open [http://localhost:5173](http://localhost:5173) in your browser.
-
-4. **List all commands**
-
-   ```bash
-   cerno --help
-   ```
-
-   Displays all available CLI commands and options.
-
----
-
-## 🐳 Docker Installation
-
-Prefer containerized workflows? Follow these steps:
-
-1. Clone and set up `.env` as above.
-2. Build and launch with Docker Compose:
-
+3. **Set Up Docker**: If you are using Docker, make sure to build the containers.
    ```bash
    docker-compose up --build
    ```
-3. Visit [http://localhost:5173](http://localhost:5173).
 
----
+4. **Run the Application**: Start the application using Django.
+   ```bash
+   python manage.py runserver
+   ```
 
-## 🛠️ CLI Reference
+5. **Access the Interface**: Open your web browser and go to `http://localhost:8000` to access the Cerno interface.
 
-| Command                     | Description                         |
-|-----------------------------|-------------------------------------|
-| `cerno --help`              | Show all commands and usage details |
-| `cerno setup`               | Re-run the full automated setup     |
-| `cerno migrate`             | Apply database migrations           |
-| `cerno start`               | Launch backend & frontend           |
-| `cerno start --no-frontend` | Launch only the Django backend      |
+For the latest releases and updates, please visit our [Releases page](https://github.com/imaryanjoshi/Cerno-Agentic-Local-Deep-Research/releases).
 
----
+## Usage
 
-## 📁 Project Structure
+Cerno allows you to engage in deep research by following these steps:
 
-```
-├── cerno             # CLI bootstrap scripts
-├── cerno_cli.py      # Click-based command definitions
-├── api/              # Django backend
-│   ├── core/         # Settings, wsgi, asgi
-│   ├── api/          # Views, serializers, URLs
-│   └── agents/       # Agent definitions & tools
-├── frontend/         # React + Vite app
-├── agent_outputs/    # Generated reports, code, data
-├── knowledge_sources/# Ingested docs for knowledge base
-├── pyproject.toml    # Dependencies & CLI entry point
-└── docker-compose.yml
-```
+1. **Create a New Query**: Use the interface to input your complex research question.
+2. **Select Your Model**: Choose between a cloud-based LLM or a self-hosted model.
+3. **Track Your Workflow**: Monitor each step of the reasoning process, which Cerno breaks down for you.
+4. **Review Results**: Analyze the output and make adjustments as needed.
+5. **Save Your Work**: Keep a record of your research for future reference.
 
----
+Cerno is designed to help you manage your research projects efficiently, ensuring you stay organized and focused.
 
-## 📸 Screenshots
+## Contributing
 
-<details>
-<summary>Expand to view screenshots</summary>
+We welcome contributions from the community! If you would like to help improve Cerno, please follow these guidelines:
 
-![Cerno Homepage](screenshots/homepage.png)
+1. **Fork the Repository**: Create your own fork of the repository.
+2. **Create a Branch**: Use a descriptive name for your branch.
+   ```bash
+   git checkout -b feature/YourFeatureName
+   ```
+3. **Make Your Changes**: Implement your changes and test them thoroughly.
+4. **Commit Your Changes**: Write a clear commit message.
+   ```bash
+   git commit -m "Add a feature"
+   ```
+5. **Push to Your Fork**: Push your changes back to your forked repository.
+   ```bash
+   git push origin feature/YourFeatureName
+   ```
+6. **Create a Pull Request**: Open a pull request to merge your changes into the main repository.
 
-![File Sources](screenshots/sources.png)
+Your contributions will help improve Cerno and make it more useful for everyone.
 
-![File Browser](screenshots/browser.png)
+## License
 
-</details>
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
----
+## Contact
 
-## 💼 Use Cases
+For any questions or inquiries, feel free to reach out:
 
-* **Academic Research**: Automate literature reviews, data extraction, and report generation.
-* **Market Analysis**: Compile insights from news sources, financial data, and social media.
-* **Competitive Intelligence**: Track competitor tooling and summarize key findings.
-* **Product Development**: Prototype multi-agent workflows for user testing and iterative design.
+- **Email**: [your-email@example.com](mailto:your-email@example.com)
+- **GitHub**: [Imaryan Joshi](https://github.com/imaryanjoshi)
 
----
-
-## 📈 Roadmap
-
-* **v1.1** (Q3 2025): More integrations, advanced visualization modules, and collaborative workspaces.
-* **v1.2** (Q4 2025): Plugin support, permissioned sharing, and audit trails.
-* **Future**: Community-driven integrations, mobile-first UI, and expanded local model support.
-
----
-
-## 🔒 Security & Privacy
-
-* **Encrypted Secrets**: API keys and sensitive data encrypted at rest.
-* **Audit Logs**: Full history of agent actions and user interactions.
-
----
-
-
-## 🤝 Contributing
-
-Contributions are welcome! Fork, develop, and submit a pull request. For major features, please open an issue first to discuss design and scope.
-
----
-
-## 📜 License
-
-Distributed under the **MIT License**. See [LICENSE](LICENSE.md) for details.
+Thank you for your interest in Cerno! We hope you find it useful for your research needs. For updates and new releases, please check our [Releases page](https://github.com/imaryanjoshi/Cerno-Agentic-Local-Deep-Research/releases).
